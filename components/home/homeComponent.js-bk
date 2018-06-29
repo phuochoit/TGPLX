@@ -1,0 +1,79 @@
+import React, { Component } from 'react';
+import { Text, View, TouchableOpacity } from 'react-native';
+import * as firebase from 'firebase';
+
+const config = {
+    apiKey: "AIzaSyCgF42Pf5Znrz37OC4l_w5DPrlLUa_Pt9s",
+    authDomain: "giay-phep-lai-xe-789c7.firebaseapp.com",
+    databaseURL: "https://giay-phep-lai-xe-789c7.firebaseio.com",
+    projectId: "giay-phep-lai-xe-789c7",
+    storageBucket: "giay-phep-lai-xe-789c7.appspot.com",
+    messagingSenderId: "980698177199"
+};
+firebase.initializeApp(config);
+const fbid = '596337700751691';
+const ggid = '980698177199-n0hjs10ftu7bhoef9mo43u8ebehoc8om.apps.googleusercontent.com';
+
+class HomeComponent extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {};
+    }
+    async loginWithFacebook(){
+        const { type, token } = await Expo.Facebook.logInWithReadPermissionsAsync(fbid, {
+            permissions: ['public_profile'],
+        });
+
+        if (type === 'success') {
+            // Build Firebase credential with the Facebook access token.
+            const credential = firebase.auth.FacebookAuthProvider.credential(token);
+
+            // Sign in with credential from the Facebook user.
+            firebase.auth().signInWithCredential(credential).catch((error) => {
+                // Handle Errors here.
+            });
+
+            firebase.auth().onAuthStateChanged((user) => {
+                if(user != null){
+                    console.log('user', user);
+                }
+            })
+        }
+    }
+    async signInWithGoogleAsync() {
+        try {
+            const result = await Expo.Google.logInAsync({
+                androidClientId: ggid,
+                // iosClientId: YOUR_CLIENT_ID_HERE,
+                scopes: ['profile', 'email'],
+            });
+
+            if (result.type === 'success') {
+                token = result.accessToken;
+                let credential = firebase.auth.GoogleAuthProvider.credential(null, token);
+                firebase.auth().signInWithCredential(credential).catch((error) => {
+                    console.log('error', error);
+                });
+            } else {
+                return { cancelled: true };
+            }
+        } catch (e) {
+            return { error: true };
+        }
+    }
+
+    render() {
+        return (
+            <View style={{flex: 1, justifyContent:'center', alignContent:'center'}}>
+                <TouchableOpacity onPress={() => this.loginWithFacebook()}>
+                    <Text>Login Facebook</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => this.signInWithGoogleAsync()}>
+                    <Text>Login Google</Text>
+                </TouchableOpacity>
+            </View>
+        );
+    }
+}
+
+export default HomeComponent;
