@@ -1,6 +1,6 @@
 import React from 'react';
 // redux
-import {createStore, applyMiddleware  } from "redux";
+import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 //redux saga
 import createSagaMiddleware from 'redux-saga';
@@ -17,7 +17,7 @@ export default class App extends React.Component {
     render() {
         return (
             <Provider store={Store}>
-                <AppNavigator/>
+                <AppNavigator />
             </Provider>
         );
     }

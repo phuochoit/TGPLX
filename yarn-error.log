@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add react-navigation-redux-helpers
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add node-fetch
 
 PATH: 
   C:\Python27\;C:\Python27\Scripts;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\Git\cmd;C:\ProgramData\chocolatey\bin;C:\Program Files\nodejs\;C:\Program Files\Java\jdk1.8.0_162\bin;D:\Android\sdk\emulator;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\OpenCL SDK\2.0\bin\x86;C:\Program Files (x86)\Intel\OpenCL SDK\2.0\bin\x64;C:\Program Files (x86)\AMD\ATI.ACE\Core-Static;C:\Program Files (x86)\Yarn\bin\;C:\Program Files (x86)\Skype\Phone\;D:\Android\sdk\platform-tools;;C:\Program Files (x86)\DevDesktop\tools;C:\WINDOWS\System32\OpenSSH\;C:\Users\No Name\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Microsoft VS Code\bin;C:\Users\No Name\AppData\Roaming\npm;C:\Users\No Name\AppData\Local\Yarn\bin;
@@ -24,6 +24,7 @@ npm manifest:
           "react": "16.3.1",
           "react-native": "https://github.com/expo/react-native/archive/sdk-28.0.0.tar.gz",
           "react-navigation": "^2.5.5",
+          "react-navigation-redux-helpers": "^2.0.2",
           "react-redux": "^5.0.7",
           "redux": "^4.0.0",
           "redux-saga": "^0.16.0"
@@ -3819,6 +3820,12 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/react-navigation-drawer/-/react-navigation-drawer-0.4.3.tgz#c04c94e2429b7e724801af05bd0a93a79cb27f71"
     dependencies:
       react-native-drawer-layout-polyfill "^1.3.2"
+  
+  react-navigation-redux-helpers@^2.0.2:
+    version "2.0.2"
+    resolved "https://registry.yarnpkg.com/react-navigation-redux-helpers/-/react-navigation-redux-helpers-2.0.2.tgz#029cd5d0b50deabd2aa157afe1a2512ce205f541"
+    dependencies:
+      invariant "^2.2.2"
   
   react-navigation-tabs@0.5.1:
     version "0.5.1"

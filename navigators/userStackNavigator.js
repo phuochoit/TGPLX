@@ -1,12 +1,12 @@
 import { createStackNavigator } from 'react-navigation';
-import { USERSIGNIN, USERSIGNUP} from '../values/screenName';
+import { USERSIGNIN, USERSIGNUP} from '../values/ScreenName';
 
-import SigninComponent from "../components/signin/SigninComponent";
+import SigninContainer from "../containers/signin/SigninContainer";
 import SignupComponent from "../components/signup/SignupComponent";
 
 export default UserStackNavigator = createStackNavigator(
     {
-        USERSIGNIN: SigninComponent,
+        USERSIGNIN: SigninContainer,
         USERSIGNUP: SignupComponent,
     }, {
         headerMode: "none"

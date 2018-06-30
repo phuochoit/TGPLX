@@ -1,5 +1,5 @@
 import { createStackNavigator } from 'react-navigation';
-import { HOME} from '../values/screenName';
+import { HOME} from '../values/ScreenName';
 
 import HomeComponent from "../components/home/HomeComponent";
 

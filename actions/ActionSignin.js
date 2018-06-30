@@ -1,8 +1,9 @@
 import { FETCH_SIGNIN, FETCH_SIGNIN_FAILED,FETCH_SIGNIN_SUCCEEDED } from "./ActionTypes";
 
-export function fetchSigninAction(){
+export function fetchSigninAction(action){
     return {
-        type: FETCH_SIGNIN
+        type: FETCH_SIGNIN,
+        action
     }
 }
 function fetchSigninSuccessedAction(result) {
