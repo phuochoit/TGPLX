@@ -58,3 +58,14 @@ export function* loginWithGoogle(){
     }
     return user;
 } 
+
+export function* logoutWithFirebase(){
+    try {
+        firebase.auth().signOut().then(function () {
+            AsyncStorage.removeItem('userToken');
+        });
+    } catch (error) {
+        console.log('logoutWithFirebase', error);
+    }
+    
+}

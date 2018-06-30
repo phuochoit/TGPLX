@@ -1,10 +1,11 @@
 import {all, fork  } from "redux-saga/effects";
 
 // saga custom 
-import { watchFetchSigninSaga } from "./SigninSaga";
+import { watchFetchSigninSaga, watchFetchLogoutSaga } from "./SigninSaga";
 
 export default function* RootSaga() {
     yield all([
-        fork(watchFetchSigninSaga)
+        fork(watchFetchSigninSaga),
+        fork(watchFetchLogoutSaga),
     ]);
 }
