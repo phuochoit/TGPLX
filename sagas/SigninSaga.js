@@ -1,4 +1,4 @@
-import { FETCH_SIGNIN, FETCH_SIGNIN_FAILED, FETCH_SIGNIN_SUCCEEDED } from "../actions/ActionTypes";
+import { FETCH_SIGNIN, FETCH_SIGNIN_FAILED, FETCH_SIGNIN_SUCCEEDED, LOGINSUCCEEDED } from "../actions/ActionTypes";
 
 import { put, takeLatest, call } from "redux-saga/effects";
 import { loginWithFacebook, loginWithGoogle } from "./firebaseAPI/LoginApi";
@@ -10,6 +10,8 @@ function* fetchSigninSaga(action) {
         } else if (action.action === 'Google') {
             user = yield call(loginWithGoogle);
         }
+        yield put({ type: LOGINSUCCEEDED});
+        
         yield put({ type: FETCH_SIGNIN_SUCCEEDED, result: user});
     } catch (error) {
         yield put({ type: FETCH_SIGNIN_FAILED, error })

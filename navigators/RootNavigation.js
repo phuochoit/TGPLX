@@ -6,15 +6,17 @@ import {
     createReactNavigationReduxMiddleware,
 } from 'react-navigation-redux-helpers';
 
-import { APP, AUTH } from "../values/ScreenName";
+import { APP, AUTH, AUTHLOADING } from "../values/ScreenName";
 import AppStackNavigator from "./AppStackNavigator";
 import UserStackNavigator from "./UserStackNavigator";
+import AuthLoadingScreen from "../components/AuthLoadingScreen";
 
 const RootNavigator = createSwitchNavigator({
+    AUTHLOADING: AuthLoadingScreen,
     AUTH: UserStackNavigator,
     APP: AppStackNavigator
 }, {
-        initialRouteName: AUTH,
+        initialRouteName: AUTHLOADING,
     }
 );
 

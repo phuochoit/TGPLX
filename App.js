@@ -12,7 +12,6 @@ import { AppNavigator, middleware } from "./navigators/RootNavigation";
 
 const SagaMiddleware = createSagaMiddleware(middleware);
 const Store = createStore(RootReducer, applyMiddleware(SagaMiddleware));
-
 export default class App extends React.Component {
     render() {
         return (

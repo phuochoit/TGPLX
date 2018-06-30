@@ -12,6 +12,12 @@ const config = {
 };
 firebase.initializeApp(config);
 
+/**
+ * login with facebook
+ *
+ * @export
+ * @returns
+ */
 export function* loginWithFacebook(){
     let user = null;
     try {
@@ -19,10 +25,9 @@ export function* loginWithFacebook(){
             permissions: ['public_profile','email'],
         });
         if (type === 'success') {
-            // Build Firebase credential with the Facebook access token.
-            const credential = yield firebase.auth.FacebookAuthProvider.credential(token);
-            // Sign in with credential from the Facebook user.
-            user = yield firebase.auth().signInWithCredential(credential);
+            const credential = firebase.auth.FacebookAuthProvider.credential(token);
+            user = firebase.auth().signInWithCredential(credential);
+            yield AsyncStorage.setItem('userToken', token);
         }
     } catch (error) {
         return { error: true };
@@ -42,8 +47,9 @@ export function* loginWithGoogle(){
 
         if (result.type === 'success') {
             token = result.accessToken;
-            let credential = yield firebase.auth.GoogleAuthProvider.credential(null, token);
-            user = yield firebase.auth().signInWithCredential(credential);
+            let credential = firebase.auth.GoogleAuthProvider.credential(null, token);
+            user = firebase.auth().signInWithCredential(credential);
+            yield AsyncStorage.setItem('userToken', token);
         } else {
             return { cancelled: true };
         }

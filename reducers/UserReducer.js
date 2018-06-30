@@ -12,7 +12,7 @@ const UserReducer = (state = initialState, action) => {
         case FETCH_SIGNIN:
             return { ...state, currentlySending: true }
         case FETCH_SIGNIN_SUCCEEDED:
-            return { ...state, isLoggedIn: !true, currentlySending: false, user: action.result }
+            return { ...state, isLoggedIn: true, currentlySending: false, user: action.result }
         case FETCH_SIGNIN_FAILED:
             return { ...state, error: action.error }
         default:
