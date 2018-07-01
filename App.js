@@ -13,6 +13,15 @@ import { AppNavigator, middleware } from "./navigators/RootNavigation";
 const SagaMiddleware = createSagaMiddleware(middleware);
 const Store = createStore(RootReducer, applyMiddleware(SagaMiddleware));
 export default class App extends React.Component {
+    // load custom font
+    async componentWillMount() {
+        await Expo.Font.loadAsync({
+            'Roboto': require('native-base/Fonts/Roboto.ttf'),
+            'Roboto_medium': require('native-base/Fonts/Roboto_medium.ttf'),
+            'SourceSansPro' : require('./assets/fonts/SourceSansPro.ttf')
+        });
+    }
+
     render() {
         return (
             <Provider store={Store}>
