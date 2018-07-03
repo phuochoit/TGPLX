@@ -1,16 +1,8 @@
 import * as firebase from 'firebase';
 import { AsyncStorage } from "react-native";
-import { FACEBOOKID, GOOGLEID} from "../../values/Strings";
+import { FACEBOOKID, GOOGLEID, CONFIG} from "../../values/Strings";
 
-const config = {
-    apiKey: "AIzaSyCgF42Pf5Znrz37OC4l_w5DPrlLUa_Pt9s",
-    authDomain: "giay-phep-lai-xe-789c7.firebaseapp.com",
-    databaseURL: "https://giay-phep-lai-xe-789c7.firebaseio.com",
-    projectId: "giay-phep-lai-xe-789c7",
-    storageBucket: "giay-phep-lai-xe-789c7.appspot.com",
-    messagingSenderId: "980698177199"
-};
-firebase.initializeApp(config);
+firebase.initializeApp(CONFIG);
 
 /**
  * login with facebook

@@ -6,6 +6,9 @@ import { fetchLogoutAction } from "../../actions/ActionSignin";
 import HomeComponent from "../../components/home/HomeComponent";
 
 const mapStateToProps = (state) => {
+    console.log('====================================');
+    console.log('state', state);
+    console.log('====================================');
     return {
         user: state.user
     }
