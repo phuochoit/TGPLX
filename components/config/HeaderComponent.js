@@ -26,7 +26,7 @@ class HeaderComponent extends Component {
                     </Button>
                 </Left>
                 <Body style={styles.jcac}>
-                    <Title style={{ textAlign: 'center', }}>{title}</Title>
+                    <Title style={[styles.textfontFamily, { textAlign: 'center', }]}>{title}</Title>
                 </Body>
                 <Right style={styles.headerwrapperRight} />
             </Header>

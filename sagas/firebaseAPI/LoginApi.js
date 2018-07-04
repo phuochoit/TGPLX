@@ -1,8 +1,6 @@
 import * as firebase from 'firebase';
 import { AsyncStorage } from "react-native";
-import { FACEBOOKID, GOOGLEID, CONFIG} from "../../values/Strings";
-
-firebase.initializeApp(CONFIG);
+import { FACEBOOKID, GOOGLEID } from "../../values/Strings";
 
 /**
  * login with facebook
@@ -10,16 +8,16 @@ firebase.initializeApp(CONFIG);
  * @export
  * @returns
  */
-export function* loginWithFacebook(){
+export function* loginWithFacebook() {
     let user = null;
     try {
         const { type, token } = yield Expo.Facebook.logInWithReadPermissionsAsync(FACEBOOKID, {
-            permissions: ['public_profile','email'],
+            permissions: ['public_profile', 'email'],
         });
         if (type === 'success') {
             const credential = firebase.auth.FacebookAuthProvider.credential(token);
-            user = firebase.auth().signInWithCredential(credential);
-            yield AsyncStorage.setItem('userToken', token);
+            user = yield firebase.auth().signInWithCredential(credential);
+            yield AsyncStorage.setItem('userUID', user.uid);
         }
     } catch (error) {
         return { error: true };
@@ -28,7 +26,7 @@ export function* loginWithFacebook(){
     return user;
 }
 
-export function* loginWithGoogle(){
+export function* loginWithGoogle() {
     let user = null;
     try {
         const result = yield Expo.Google.logInAsync({
@@ -40,8 +38,8 @@ export function* loginWithGoogle(){
         if (result.type === 'success') {
             token = result.accessToken;
             let credential = firebase.auth.GoogleAuthProvider.credential(null, token);
-            user = firebase.auth().signInWithCredential(credential);
-            yield AsyncStorage.setItem('userToken', token);
+            user = yield firebase.auth().signInWithCredential(credential);
+            yield AsyncStorage.setItem('userUID', user.uid);
         } else {
             return { cancelled: true };
         }
@@ -49,15 +47,15 @@ export function* loginWithGoogle(){
         return { error: true };
     }
     return user;
-} 
+}
 
-export function* logoutWithFirebase(){
+export function* logoutWithFirebase() {
     try {
         firebase.auth().signOut().then(function () {
-            AsyncStorage.removeItem('userToken');
+            AsyncStorage.removeItem('userUID');
         });
     } catch (error) {
         console.log('logoutWithFirebase', error);
     }
-    
+
 }

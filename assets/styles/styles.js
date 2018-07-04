@@ -4,6 +4,7 @@ export const backgroundColorDefault = '#2ABF88';
 
 
 export const deviceWidth = Dimensions.get("window").width;
+export const deviceHeight = Dimensions.get("window").height;
 
 export const styles = StyleSheet.create({
     fx1: {
@@ -36,6 +37,9 @@ export const styles = StyleSheet.create({
     },
     fontSizedefault: {
         fontSize: 16,
+    },
+    textfontFamily:{
+        fontFamily: 'SourceSansPro'
     },
     headerWrapper:{
         backgroundColor: backgroundColorDefault, 

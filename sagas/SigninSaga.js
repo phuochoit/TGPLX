@@ -5,12 +5,15 @@ import { loginWithFacebook, loginWithGoogle, logoutWithFirebase } from "./fireba
 
 function* fetchSigninSaga(action) {
     try {
+        let user= null;
         if (action.action === 'Facebook') {
             user = yield call(loginWithFacebook);
         } else if (action.action === 'Google') {
             user = yield call(loginWithGoogle);
         }
-        yield put({ type: LOGINSUCCEEDED });
+        if (user != null){
+            yield put({ type: LOGINSUCCEEDED });
+        }
         yield put({ type: FETCH_SIGNIN_SUCCEEDED, result: user });
 
     } catch (error) {

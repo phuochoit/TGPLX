@@ -29,13 +29,13 @@ class SigninComponent extends Component {
                             <Row>
                                 <Button full iconLeft rounded style={[styles.fx1, styles.pda, { backgroundColor: '#4267B2' }]} onPress={this.loginWithFacebook}>
                                     <Icon name='facebook' type='FontAwesome' style={[styles.fx1, styles.fontSizedefault, { paddingLeft: 5 }]} />
-                                    <Text style={[styles.fx5, styles.textcolorfff, styles.fontSizedefault]}>Đăng Nhập Bằng Facebook</Text>
+                                    <Text style={[styles.fx5, styles.textcolorfff]}>Đăng Nhập Bằng Facebook</Text>
                                 </Button>
                             </Row>
                             <Row>
                                 <Button full iconLeft rounded style={[styles.fx1, styles.pda, { flex: 1, backgroundColor: '#D50F26' }]} onPress={this.loginWithGoogle}>
                                     <Icon name='google' type='FontAwesome' style={[styles.fx1, styles.fontSizedefault, { paddingLeft: 5 }]} />
-                                    <Text style={[styles.fx5, styles.textcolorfff, styles.fontSizedefault]}>Đăng Nhập Bằng Google</Text>
+                                    <Text style={[styles.fx5, styles.textcolorfff]}>Đăng Nhập Bằng Google</Text>
                                 </Button>
                             </Row>
                         </Grid>
