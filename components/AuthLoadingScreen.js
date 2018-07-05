@@ -1,6 +1,7 @@
 import React from 'react';
-import { View , AsyncStorage} from 'react-native';
+import { View, AsyncStorage } from 'react-native';
 import * as firebase from 'firebase';
+
 import { CONFIG } from "../values/Strings";
 import { AUTH, APP } from "../values/ScreenName";
 
@@ -11,19 +12,14 @@ class AuthLoadingScreen extends React.Component {
         super(props);
         this._bootstrapAsync();
     }
-    // Fetch the token from storage then navigate to our appropriate place
     _bootstrapAsync = async () => {
-        // Listen for authentication state to change.
-        // await firebase.auth().onAuthStateChanged((user) => {
-        //     if (user != null) {
-                
-        //     } else {
-                
-        //     }
-        //     console.log('user', user);
-        // });
-        const userUID = await AsyncStorage.getItem('userUID');
-        this.props.navigation.navigate(userUID ? APP : AUTH);
+        await firebase.auth().onAuthStateChanged((user) => {
+            if (user != null) {
+                this.props.fetchSigninContainer(user);
+            } else {
+                this.props.navigation.navigate(AUTH);
+            }
+        });
     };
 
     render() {

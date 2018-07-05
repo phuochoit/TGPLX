@@ -41,6 +41,9 @@ export const styles = StyleSheet.create({
     textfontFamily:{
         fontFamily: 'SourceSansPro'
     },
+    textFontBold: {
+        fontWeight: 'bold'
+    },
     headerWrapper:{
         backgroundColor: backgroundColorDefault, 
         borderTopColor: '#fff', 
@@ -55,5 +58,20 @@ export const styles = StyleSheet.create({
         alignItems: 'flex-end'
     },
     headerwrapperCenter: {},
+    sidebarTxtMenu: {
+        fontSize: 18, 
+        fontFamily: 'SourceSansPro',
+    },
+    sidebarIconMenu: {
+        fontSize: 20
+    },
+    sidebarCenter: { 
+        borderColor: '#E9E9E9', 
+        borderWidth: 1, 
+        borderStyle: 'solid',
+        borderLeftWidth: 0, 
+        borderRightWidth: 0,  
+        paddingVertical: 5 
+    }
 });
 

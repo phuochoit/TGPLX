@@ -8,18 +8,13 @@ class HomeComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {  };
-        this.logoutWithFirebase = this.logoutWithFirebase.bind(this);
+
     }
-    logoutWithFirebase = () => {
-        this.props.fetchLogoutContainer();
-    }
+
     render() {
         return (
             <Container>
                 <HeaderComponent navigation={this.props.navigation} title="Ôn thi giấy phép lái xe" />
-                <TouchableOpacity onPress={this.logoutWithFirebase} >
-                     <Text>Đăng Xuất</Text>
-                 </TouchableOpacity>
             </Container>
 
             // <View style={{ flex: 1, justifyContent: 'center', alignContent: 'center', alignItems: 'center' }}>

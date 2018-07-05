@@ -7,14 +7,14 @@ import {
 } from 'react-navigation-redux-helpers';
 
 import { APP, AUTH, AUTHLOADING } from "../values/ScreenName";
-import AppStackNavigator from "./AppStackNavigator";
+import AppDrawerNavigator from "./AppDrawerNavigator";
 import UserStackNavigator from "./UserStackNavigator";
-import AuthLoadingScreen from "../components/AuthLoadingScreen";
+import AuthLoadingContainer from "../containers/config/AuthLoadingContainer";
 
 const RootNavigator = createSwitchNavigator({
-    AUTHLOADING: AuthLoadingScreen,
+    AUTHLOADING: AuthLoadingContainer,
     AUTH: UserStackNavigator,
-    APP: AppStackNavigator
+    APP: AppDrawerNavigator
 }, {
         initialRouteName: AUTHLOADING,
     }

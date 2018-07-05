@@ -3,12 +3,13 @@ import { FETCH_SIGNIN, FETCH_SIGNIN_FAILED, FETCH_SIGNIN_SUCCEEDED, FETCH_LOGOUT
 export function fetchSigninAction(action) {
     return {
         type: FETCH_SIGNIN,
-        action
+        playload: action
     }
 }
 export function fetchLogoutAction() {
     return { type: FETCH_LOGOUT }
 }
+
 
 function fetchLogoutSuccessedAction() {
     return {

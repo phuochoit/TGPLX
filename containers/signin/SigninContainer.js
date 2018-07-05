@@ -5,12 +5,6 @@ import { fetchSigninAction } from "../../actions/ActionSignin";
 //component
 import SigninComponent from "../../components/signin/SigninComponent";
 
-const mapStateToProps = (state) => {
-    return {
-        user: state.user
-    }
-};
-
 const mapDispatchToProps = (dispatch) => {
     return {
         fetchSigninContainer: (action) => {
@@ -18,5 +12,5 @@ const mapDispatchToProps = (dispatch) => {
         },
     }
 };
-const SigninContainer = connect(mapStateToProps, mapDispatchToProps)(SigninComponent);
+const SigninContainer = connect(null, mapDispatchToProps)(SigninComponent);
 export default SigninContainer;

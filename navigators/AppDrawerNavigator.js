@@ -4,13 +4,14 @@ import { createDrawerNavigator } from 'react-navigation';
 import { deviceWidth } from "../assets/styles/styles";
 import { HOME } from '../values/ScreenName';
 import HomeContainer from "../containers/home/HomeContainer";
-import SideBar from "../components/config/SideBar";
+import SideBarContainer from "../containers/config/SideBarContainer";
 
 
-export default AppStackNavigator = createDrawerNavigator(
+export default AppDrawerNavigator = createDrawerNavigator(
     {
         HOME: { screen: HomeContainer },
     }, {
         drawerWidth: deviceWidth / 1.3,
-        contentComponent: props => <SideBar {...props} />
+        headerMode: "none",
+        contentComponent: props => <SideBarContainer {...props} />
     });

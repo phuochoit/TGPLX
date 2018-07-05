@@ -1,83 +1,48 @@
 import React from "react";
 import * as firebase from 'firebase';
-import { View } from "react-native";
+import { View, TouchableOpacity } from "react-native";
 import { Container, Content, Text, List, ListItem, Thumbnail, H1, Left, Right, Body, Icon } from "native-base";
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import { styles, deviceHeight } from "../../assets/styles/styles";
 import { HOME } from "../../values/ScreenName";
+import { DARWERMENU } from "../../values/Strings";
 
-const routes = ["Home", "Chat", "Profile"];
-const route = [{
-    name: 'ONTAP',
-    title: 'Ôn Tập',
-    icon: 'book',
-    iconType: 'FontAwesome'
-}, {
-    name: 'BIENBAO',
-    title: 'Biển Báo',
-    icon: 'warning',
-    iconType: 'Entypo'
-}, {
-    name: 'BODE',
-    title: 'Thi Theo Bộ Đề',
-    icon: 'newspaper-o',
-    iconType: 'FontAwesome'
-}, {
-    name: 'DENGAUNHIEN',
-    title: 'Đề Ngẫu Nhiên',
-    icon: 'random',
-    iconType: 'FontAwesome'
-}, {
-    name: 'CAUSAI',
-    title: 'Câu Sai',
-    icon: 'check-square',
-    iconType: 'Feather'
-}, {
-    name: 'MEOGHINHO',
-    title: 'Mẹo Ghi Nhớ',
-    icon: 'tooltip',
-    iconType: 'MaterialCommunityIcons'
-}, {
-    name: 'CAIDAT',
-    title: 'Cài Đặt',
-    icon: 'settings',
-    iconType: 'MaterialCommunityIcons'
-}];
 export default class SideBar extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            userInfo: null
-        }
+        this.state = {}
+
     }
-    async componentDidMount() {
-        await firebase.auth().onAuthStateChanged((user) => {
-            this.setState({ userInfo: user });
+    logout = async () => {
+        await firebase.auth().signOut().then(function () {
+            this.props.fetchLogoutContainer();
         });
-        console.log('currentUser',firebase.auth().currentUser);
     }
 
     render() {
-        const { userInfo } = this.state;
-        const heightTop = deviceHeight * 0.2;
+        const { user } = this.props.user;
+        const heightTop = deviceHeight * 0.25;
         const heightcenter = deviceHeight * 0.1;
-        const heightFooter = deviceHeight * 0.1;
+        const heightFooter = deviceHeight * 0.05;
         const heightBottom = deviceHeight - heightTop - heightcenter - heightFooter;
-        if (userInfo != null) {
+
+        if (user != null) {
             return (
-                <Container>
+                <Container style={{backgroundColor: '#fff'}}>
                     <Content>
                         <Grid>
-                            <Row style={{ height: heightTop }}>
-                                <View style={[styles.fx1]}>
-                                    <Thumbnail square source={{ uri: userInfo.photoURL }} />
-                                </View>
-                                <View style={[styles.fx3]}>
-                                    <Text>{userInfo.displayName}</Text>
-                                    <Text >{userInfo.email}</Text>
+                            <Row style={{height: heightTop, paddingHorizontal: 20, paddingVertical: 10}}>
+                                <View style={[styles.fx1, { flexDirection: 'column' }]}>
+                                    <View style={[styles.fx1, styles.jcac]}>
+                                        <Thumbnail square source={{ uri: user.photoURL }} />
+                                    </View>
+                                    <View style={[styles.fx3, { justifyContent: 'center', alignItems: 'flex-start', marginTop: 15 }]}>
+                                        <Text><Text style={styles.textFontBold}>Tên: </Text>{user.displayName}</Text>
+                                        <Text><Text style={styles.textFontBold}>Email: </Text>{user.email}</Text>
+                                    </View>
                                 </View>
                             </Row>
-                            <Row style={{ borderColor: '#E9E9E9', borderWidth: 1, borderStyle: 'solid', borderLeftWidth: 0, borderRightWidth: 0, height: heightcenter }}>
+                            <Row style={[styles.sidebarCenter,{ height: heightcenter}]}>
                                 <View style={[styles.fx1, styles.jcac]}>
                                     <H1>15</H1>
                                     <Text>Thi</Text>
@@ -91,19 +56,21 @@ export default class SideBar extends React.Component {
                                     <Text>Trượt</Text>
                                 </View>
                             </Row>
-                            <Row style={{ height: heightBottom }}>
+                            <Row style={{ height: heightBottom, paddingTop: 30 }}>
                                 <List
-                                    dataArray={route}
+                                    dataArray={DARWERMENU}
                                     renderRow={data => {
                                         return (
-                                            <ListItem icon
+                                            <ListItem
+                                                icon
                                                 button
-                                                onPress={() => this.props.navigation.navigate(data.name)}>
+                                                onPress={() => this.props.navigation.navigate(data.name)}
+                                                style={{ height: 35 }}>
                                                 <Left>
-                                                    <Icon name={data.icon} type={data.iconType} />
+                                                    <Icon name={data.icon} type={data.iconType} style={styles.sidebarIconMenu} />
                                                 </Left>
-                                                <Body>
-                                                    <Text style={{fontSize: 15}}>{data.title}</Text>
+                                                <Body style={{ borderBottomWidth: 0, height: 'auto' }}>
+                                                    <Text style={styles.sidebarTxtMenu}>{data.title}</Text>
                                                 </Body>
                                                 <Right />
                                             </ListItem>
@@ -111,15 +78,18 @@ export default class SideBar extends React.Component {
                                     }}
                                 />
                             </Row>
-                            <Row style={{ height: heightFooter, justifyContent: 'flex-end' }}>
-                                <View>
-                                    <View>
-                                        <Icon name='logout-variant' type='MaterialCommunityIcons' />
+                            <Row style={{ height: heightFooter, justifyContent: 'flex-end', alignItems: 'flex-start' }}>
+                                <TouchableOpacity
+                                    style={[styles.fx1, { marginLeft: 17, flexDirection: 'row' }]}
+                                    onPress={this.logout.bind(this)}
+                                >
+                                    <View style={{ width: 30 }}>
+                                        <Icon name='logout-variant' type='MaterialCommunityIcons' style={styles.sidebarIconMenu} />
                                     </View>
-                                    <View>
-                                        <Text>Đăng Xuất</Text>
+                                    <View style={styles.fx1}>
+                                        <Text style={styles.sidebarTxtMenu} >Đăng Xuất</Text>
                                     </View>
-                                </View>
+                                </TouchableOpacity>
                             </Row>
                         </Grid>
                     </Content>
